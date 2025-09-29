@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&family=Playfair+Display:wght@600&display=swap');
+
+:root {
+  --background: #f5f7fb;
+  --surface: #ffffff;
+  --text: #102542;
+  --muted: #4a5b7a;
+  --accent: #5a6ff0;
+  --accent-strong: #7f9cf5;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle at 20% 20%, #ffffff 0, #e9eef9 45%, #dce3f5 100%);
+  color: var(--text);
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+}
+
+.app {
+  width: min(960px, 100%);
+  padding: 64px 24px;
+}
+
+.app__header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.app__header h1 {
+  margin: 0 0 12px;
+  font-size: clamp(2.2rem, 4vw, 3.4rem);
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.app__header p {
+  margin: 0 auto;
+  max-width: 520px;
+  font-size: 1.1rem;
+  color: var(--muted);
+}
+
+.card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 32px;
+  padding: 36px;
+  border-radius: 32px;
+  background: var(--surface);
+  box-shadow: 0 26px 60px rgba(16, 37, 66, 0.14);
+  overflow: hidden;
+}
+
+/* Suppression de l'effet hover global pour un rendu plus sobre */
+.card::before {
+  content: none;
+}
+
+.card__media {
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.18);
+  cursor: pointer;
+}
+
+.card__media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 0.45s ease, opacity 0.3s ease;
+  opacity: 0;
+}
+
+.card__media img[data-loaded='true'] {
+  opacity: 1;
+}
+
+.card__media img {
+  transition: opacity 0.3s ease;
+}
+
+.card__message {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+
+.card__message .message-text {
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px;
+  font-size: 1.1rem;
+  line-height: 1.65;
+  color: var(--text);
+  padding: 0;
+  opacity: 0;
+  transform: translateY(6px);
+  transition: opacity 0.28s ease, transform 0.28s ease;
+}
+
+.card__message .message-text.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
+.message-segment {
+  border: none;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(90, 111, 240, 0.3);
+  transition: color 0.2s ease, border-bottom-color 0.2s ease;
+}
+
+.message-segment:hover,
+.message-segment:focus-visible {
+  color: var(--accent);
+  border-bottom-color: var(--accent);
+  outline: none;
+}
+
+.card__actions {
+  grid-column: span 2;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 16px;
+}
+
+button {
+  appearance: none;
+  border: none;
+  border-radius: 999px;
+  padding: 14px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+button:focus-visible {
+  outline: 3px solid rgba(90, 111, 240, 0.45);
+  outline-offset: 3px;
+}
+
+#reroll-button {
+  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #fff;
+  box-shadow: 0 18px 34px rgba(90, 111, 240, 0.3);
+}
+
+#reroll-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 22px 40px rgba(90, 111, 240, 0.36);
+}
+
+#share-button {
+  background: #ffffff;
+  color: var(--accent);
+  box-shadow: inset 0 0 0 2px rgba(90, 111, 240, 0.45);
+}
+
+#share-button:hover {
+  transform: translateY(-2px);
+  box-shadow: inset 0 0 0 2px rgba(90, 111, 240, 0.7);
+}
+
+.share-feedback {
+  min-height: 1em;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+@media (max-width: 960px) {
+  .card {
+    grid-template-columns: 1fr;
+  }
+
+  .card__actions {
+    grid-column: 1;
+    justify-content: flex-start;
+  }
+}
+
+@media (max-width: 640px) {
+  .app {
+    padding: 48px 16px;
+  }
+
+  .card {
+    padding: 26px;
+    border-radius: 26px;
+    gap: 24px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  .card__actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+}

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pipotronic</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <div class="app">
+      <header class="app__header">
+        <h1>Pipotronic</h1>
+        <p>
+          Générateur instantané de jargon corporate absurde.
+        </p>
+      </header>
+
+      <main class="app__main">
+        <article class="card">
+          <figure class="card__media">
+            <img
+              id="pipotronic-image"
+              src=""
+              alt="Scène de réunion corporate"
+              loading="lazy"
+            />
+          </figure>
+
+          <section
+            class="card__message"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            <p id="pipotronic-text" class="message-text"></p>
+          </section>
+
+          <footer class="card__actions">
+            <button id="reroll-button" type="button">
+              Encore&nbsp;?
+            </button>
+            <button id="share-button" type="button">
+              Partager
+            </button>
+            <span class="share-feedback" aria-live="polite"></span>
+          </footer>
+        </article>
+      </main>
+    </div>
+
+    <script src="data/images.js"></script>
+    <script src="data/segments.js"></script>
+    <script src="scripts/app.js" defer></script>
+  </body>
+</html>
